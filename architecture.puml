@@ -1,0 +1,7 @@
+@startuml
+node "PHP Login Managment"{
+    node "Model" as model
+    node "Controller" as Controller
+    node "View" as view
+}
+@enduml
