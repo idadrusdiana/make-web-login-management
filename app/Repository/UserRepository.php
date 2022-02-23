@@ -2,6 +2,8 @@
 
 namespace ProgrammerZamanNow\Belajar\PHP\MVC\Repository;
 
+use ProgrammerZamanNow\Belajar\PHP\MVC\Domain\User;
+
 class UserRepository
 {
     private \PDO $connection;
@@ -11,20 +13,24 @@ class UserRepository
         $this->connection = $connection;
     }
 
-    public function save(User $user): User {
+    public function save(User $user): User 
+    {
         $statement = $this->connection->prepare("INSERT INTO users(id, name, password) VALUES (?, ?, ?)");
         $statement->execute([
-            $user->id, $user->name, $user->password
+            $user->id, 
+            $user->name, 
+            $user->password
         ]);
         return $user;
     }
 
-    public function findById(string $id): User{
-        $this->connection->prepare("SELECT id, name, password FROM users WHERE id = ?");
+    public function findById(string $id): ?User
+    {
+        $statement = $this->connection->prepare("SELECT id, name, password FROM users WHERE id = ?");
         $statement->execute([$id]);
 
         try{
-            if($row = $statement->fetch()){
+            if($row = $statement->fetch())      {
                 $user = new User();
                 $user->id = $row['id'];
                 $user->name = $row['name'];

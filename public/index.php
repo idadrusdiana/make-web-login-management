@@ -15,5 +15,4 @@ Router::add('GET', '/', HomeController::class, 'index');
 Router::add('GET', '/users/register', UserController::class, 'register');
 Router::add('POST', '/users/register', UserController::class, 'postRegister');
 
-
 Router::run();

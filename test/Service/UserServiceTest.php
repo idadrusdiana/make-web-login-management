@@ -1,11 +1,13 @@
 <?php
 
+// use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestCase;
 use ProgrammerZamanNow\Belajar\PHP\MVC\Config\Database;
 use ProgrammerZamanNow\Belajar\PHP\MVC\Domain\User;
 use ProgrammerZamanNow\Belajar\PHP\MVC\Exception\ValidationException;
-use ProgrammerZamanNow\Belajar\PHP\MVC\Model\UserRgisterRequest;
-use ProgrammerZamanNow\Belaja\PHP\MVC\Repository\UserRepository;
+use ProgrammerZamanNow\Belajar\PHP\MVC\Model\UserRegisterRequest;
+use ProgrammerZamanNow\Belajar\PHP\MVC\Repository\UserRepository;
+use ProgrammerZamanNow\Belajar\PHP\MVC\Service\UserService;
 
 class UserServiceTest extends TestCase
 {
@@ -57,6 +59,15 @@ class UserServiceTest extends TestCase
         $user->password = "rahasia";
 
         $this->userRepository->save($user);
+
+        $this->expectException(ValidationException::class);
+
+        $request = new UserRegisterRequest();
+        $request->id = "Idad";
+        $request->name = "Idad";
+        $request->password = "rahasia";
+
+        $this->userService->register($request);
     }
 
 }

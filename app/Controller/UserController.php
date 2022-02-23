@@ -21,7 +21,7 @@ class UserController
     }
     public function register()
     {
-        View::render('User/register',[
+        View::render('User/register', [
             'title' => 'Register new user'
         ]);
     }
@@ -35,8 +35,8 @@ class UserController
 
         try{
             $this->userService->register($request); 
-            View::render('users/login');           
-        }catch(ValidationException $exception){
+            View::redirect('/users/login');           
+        }catch (ValidationException $exception){
             View::render('User/register', [
                 'title' => 'Register new User',
                 'error' => $exception->getMessage()

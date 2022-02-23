@@ -5,13 +5,15 @@ namespace ProgrammerZamanNow\Belajar\PHP\MVC\Service;
 use ProgrammerZamanNow\Belajar\PHP\MVC\Config\Database;
 use ProgrammerZamanNow\Belajar\PHP\MVC\Domain\User;
 use ProgrammerZamanNow\Belajar\PHP\MVC\Exception\ValidationException;
-use ProgramZamanNow\Belajar\PHP\MVC\Model\UserRegisterRequest;
-use ProgramZamanNow\Belajar\PHP\MVC\Model\UserRegisterResponse;
-use ProgramZamanNow\Belajar\PHP\MVC\Repository\UserRepository;
+use ProgrammerZamanNow\Belajar\PHP\MVC\Model\UserRegisterRequest;
+use ProgrammerZamanNow\Belajar\PHP\MVC\Model\UserRegisterResponse;
+use ProgrammerZamanNow\Belajar\PHP\MVC\Repository\UserRepository;
 
 class UserService
 {
-    public function __construst(UserRepository $userRepository)
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     } 
